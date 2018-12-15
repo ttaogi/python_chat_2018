@@ -16,8 +16,7 @@ _LIMIT_MSG_LOG = 100
 class UI_TOP:
     def __init__(self):
         '''
-        self.name : a name that is used at chatting (string)
-        self.addr : address of server that receive my message(string)
+        self.msg_log : log of chatting (string)
         
         self.root : root of UI (tkinter.Tk)
         
@@ -27,43 +26,13 @@ class UI_TOP:
         self.msg_log : chatting log (string)
         self.msg_log_label : it shows chatting log (tkinter.Label)
 
-        self.renewal_button : renew log (tkinter.Button)
-        
-        self.input_msg_entry : input your msg (tkinter.Entry)
-        self.send_btn : when this button is clicked, program sends a message (tkinter.Button)
-        
-        self.input_name_entry : input name (tkinter.Entry)
-        self.set_name_btn : modify name (tkinter.Button)
-
-        self.input_addr_entry : input address (tkinter.Entry)
-        self.set_addr_btn : modify address (tkinter.Button)
-
         self.server_thread : thread for server (threading.Thread)
 
-        self.renewal_log() ; renew log
         self.set_server() : set up server
             self.server_sock : socket for server (socket.socket)
-        self.send_btn_clicked() : send message
-        self.set_name() : set name
-        self.set_addr() : set address
         --------------------------------------
-        [name display]
-        [address display]
-        
         [chatting log]
-        [renewal button]
-        
-        [input message entry]
-        [send button]
-        
-        [input name entry]
-        [set name button]
-        
-        [input address entry]
-        [set address button]
         '''
-        self.name = "Anonymous"
-        self.addr = "127.0.0.1"
         self.msg_log = "This is message log.\n"
 
         ##server

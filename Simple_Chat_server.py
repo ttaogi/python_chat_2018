@@ -51,11 +51,6 @@ def server_mode():
                 continue
             
             print(">>> " + msg.decode("utf-8") + "\n")
-
-            #echo = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            #echo.setcoskopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            #echo.bind(("", _CLIENT_PORT))
-            #echo.send(msg)
         except Exception as e:
             if sock:
                 sock.close()
