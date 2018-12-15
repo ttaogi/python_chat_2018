@@ -8,12 +8,13 @@ from threading import *
 _NAME = ""
 _MSG_LOG = ""
 _SERVER_PORT = 40725
-_CLIENT_PORT = 40180
+_CLIENT_PORT = 40181
 _BUFFER_SIZE = 4096
 _LISTEN_COUNT = 5
 
 
 ##########
+'''
 def server_mode():
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -62,6 +63,7 @@ def server_mode():
 
     if sock:
         sock.close()
+'''
 
 
 
@@ -122,12 +124,13 @@ def client_mode():
 
 _NAME = input("Input name : ")
 
-server_thread = Thread(target=server_mode, args=())
-server_thread.start()
-print("server start")
+#server_thread = Thread(target=server_mode, args=())
+#server_thread.start()
+#print("server start")
 client_thread = Thread(target=client_mode, args=())
 client_thread.start()
 print("client start\n")
+
 
 
 

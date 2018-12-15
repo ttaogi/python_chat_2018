@@ -51,7 +51,11 @@ def server_mode():
                 continue
             
             print(">>> " + msg.decode("utf-8") + "\n")
-            sys.stdout.flush()
+
+            #echo = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            #echo.setcoskopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            #echo.bind(("", _CLIENT_PORT))
+            #echo.send(msg)
         except Exception as e:
             if sock:
                 sock.close()
@@ -66,68 +70,11 @@ def server_mode():
 
 
 ##########
-def client_mode():
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    except Exception as e:
-        if sock:
-            sock.close()
-        print(":::client_mode socket() error.\n")
-        print(e)
-        sys.exit(1)
-
-    try:
-        sock.bind(("", _CLIENT_PORT))
-    except Exception as e:
-        if sock:
-            sock.close()
-        print(":::client_mode bind() error.\n")
-        print(e)
-        sys.exit(1)
-
-    try:
-        addr = input("Input target address : ")
-        sock.connect((addr, _SERVER_PORT))
-    except Exception as e:
-        if sock:
-            sock.close()
-        print(":::client_mode connect() error.\n")
-        print(e)
-        sys.exit(1)
-
-    while True:
-        try:
-            msg = input("Input msg : \n")
-            if len(msg) == 0:
-                continue
-            else:
-                sock.send((_NAME + " : " + msg).encode("utf-8"))
-        except Exception as e:
-            if sock:
-                sock.close()
-            print(":::client_mode send() error.\n")
-            print(e)
-            sys.exit(1)
-
-        if msg.find("/quit") != -1:
-            print("Terminating connection.\n")
-            break
-
-    sock.close()
-        
-
-
-##########
-
-_NAME = input("Input name : ")
 
 server_thread = Thread(target=server_mode, args=())
 server_thread.start()
 print("server start")
-client_thread = Thread(target=client_mode, args=())
-client_thread.start()
-print("client start\n")
+
 
 
 
